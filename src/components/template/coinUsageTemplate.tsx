@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageTitleCard from '../molecules/pageTitleCard';
 import { CoinUsageInfo } from '../../types/coin';
@@ -9,23 +8,13 @@ interface CoinUsageTemplateProps {
   coinUsage: CoinUsageInfo[];
   page: number,
   onChangePage: (type: 'left' | 'right') => void,
+  isLastPage: boolean;
 }
 
-function CoinUsageTemlate({ coinUsage, page, onChangePage }: CoinUsageTemplateProps) {
+function CoinUsageTemlate({
+  coinUsage, page, onChangePage, isLastPage,
+}: CoinUsageTemplateProps) {
   const { t } = useTranslation();
-
-  const [isLastPage, setIsLastPage] = useState(false);
-
-  useEffect(() => {
-    if (coinUsage.length < 12) {
-      return () => {
-        setIsLastPage(true);
-      };
-    }
-    return () => {
-      setIsLastPage(false);
-    };
-  }, [coinUsage]);
 
   return (
     <div>
@@ -42,18 +31,17 @@ function CoinUsageTemlate({ coinUsage, page, onChangePage }: CoinUsageTemplatePr
           <div className="pr-6">{t('coinUsage.totalCoin')}</div>
         </div>
         <ul className="flex flex-col gap-2 pb-[3.7rem] pt-2">
-          {coinUsage.map(({
-            usageId, date, usageCoin, totalCoin,
+          {coinUsage && coinUsage.length > 0 ? coinUsage.map(({
+            amount, usedAt, balance,
           }) => (
-            <li key={usageId}>
+            <li key={usedAt}>
               <CoinListCard
-                date={date}
-                passingCoin={usageCoin}
-                finalCoin={totalCoin}
-                isUse
+                date={usedAt}
+                amount={amount}
+                balance={balance}
               />
             </li>
-          ))}
+          )) : <div>코인 사용 내역이 없습니다.</div>}
         </ul>
       </main>
     </div>

@@ -12,6 +12,7 @@ RUN npm ci
 RUN npm install -g serve
 
 ENV REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyBtao20r_247a6bBCjOsBHDuK4HJbAcvmg
+ENV REACT_APP_GOOGLE_TRANSLATION_API_KEY=AIzaSyAmve_L6Gu0xkFR3jhpNS68waoE6N1vr4U
 
 # 프로젝트 npm build
 RUN npm run build

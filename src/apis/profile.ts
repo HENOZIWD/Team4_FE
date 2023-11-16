@@ -8,7 +8,7 @@ export async function profileEdit({
   age, gender, nickname, language,
 }: ProfileEditInfo)
   : Promise<ResultType> {
-  const response = await fetchInstance.put('/users-info', {
+  const response = await fetchInstance.put('/users/info', {
     language,
     age,
     gender,
@@ -30,8 +30,13 @@ export async function profileCreate({
   return response;
 }
 
-export async function getProfile(): Promise<ProfileInfo> {
-  const response = await fetchInstance.get('/users/info');
+export async function getProfile(token: string | null): Promise<ProfileInfo> {
+  const response = await fetchInstance.get('/users/info', {
+    headers: {
+      Authorization: token,
+    },
+    withCredentials: true,
+  });
   return response.data.data;
 }
 

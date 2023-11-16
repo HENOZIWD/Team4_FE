@@ -28,13 +28,12 @@ function Login() {
       alert(t('login.success'));
       setIsError(false);
 
-      getProfile().then((response) => {
+      getProfile(res.accessToken).then((response) => {
         localStorage.setItem('email', response.email);
         localStorage.setItem('nickname', response.nickname);
         localStorage.setItem('profileImageUrl', response.profileImageUrl);
         localStorage.setItem('gender', response.gender.toLowerCase());
         localStorage.setItem('age', `${response.age}`);
-        localStorage.setItem('language', response.locale.toLowerCase());
       }).catch(() => {
         alert('유저 정보를 받아올 수 없습니다.');
       });

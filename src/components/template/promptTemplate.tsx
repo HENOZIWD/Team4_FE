@@ -5,9 +5,10 @@ import Button from '../atoms/button';
 
 interface PromptTemplateProps {
   prompt: { [key: string]: number },
+  data: string | null;
 }
 
-function PromptTemplate({ prompt }: PromptTemplateProps) {
+function PromptTemplate({ prompt, data }: PromptTemplateProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
@@ -31,6 +32,12 @@ function PromptTemplate({ prompt }: PromptTemplateProps) {
           </div>
         ))}
       </div>
+      {data ? (
+        <section className="mt-16 bg-matgpt-gray/25 p-4">
+          <h2 className="mb-2 text-center font-bold">ChatGPT로 생성한 프롬프트</h2>
+          <p>{data}</p>
+        </section>
+      ) : null}
       <Button size="medium" onClick={() => { navigate(-1); }} extraStyle="fixed bottom-24 w-full max-w-[500px]">
         {t('promptPage.confirm')}
       </Button>

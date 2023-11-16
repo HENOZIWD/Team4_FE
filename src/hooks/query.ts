@@ -33,7 +33,7 @@ export function useStoreReview(storeId: number) {
     queryKey: ['storeReview', { storeId }],
     queryFn: async ({ pageParam = 10000 }) => getReviews(storeId, pageParam),
     getNextPageParam: (lastPage) => (
-      lastPage.paging.hasNext ? lastPage.paging.nextCursor : null
+      lastPage.paging.hasNext ? lastPage.paging.nextCursorId : null
     ),
   });
 }

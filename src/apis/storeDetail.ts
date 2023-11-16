@@ -13,7 +13,7 @@ export async function getReviews(
   cursor: number,
 ) {
   const response = await fetchInstance.get<AxiosResponse<PagingDataResponse<ReviewCardInfo>>>(
-    `stores/${storeId}/reviews?sortBy=latest&cursorId=${cursor}&cursorLikes=${cursor}`,
+    `stores/${storeId}/reviews?sortBy=latest&cursorId=${cursor}&cursor=${cursor}`,
   );
 
   return response.data.data;

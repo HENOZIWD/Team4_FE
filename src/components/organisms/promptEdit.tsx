@@ -1,5 +1,4 @@
 import React from 'react';
-import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -7,7 +6,6 @@ import type { RootState } from '../../store';
 import Icon from '../atoms/icon';
 import PromptList from '../molecules/promptList';
 import Button from '../atoms/button';
-import { createPrompt } from '../../apis/prompt';
 
 interface PromptEditProps {
   setIsClick: React.Dispatch<React.SetStateAction<boolean>>,
@@ -17,20 +15,14 @@ function PromptEdit({ setIsClick }: PromptEditProps) {
   const { t } = useTranslation();
   const prompts = useSelector((state: RootState) => state.promptMenu);
   const navigate = useNavigate();
-  const promptId = 1;
-  const { mutate: createPromptMutation } = useMutation({ // post 요청 성공 시 promptId 값 받음 후에 수정 해야 함
-    mutationKey: 'createPrompt',
-    mutationFn: () => createPrompt(),
-    onSuccess: () => { alert(t('reviewDetailPage.successPromptCreate')); navigate(`/prompt/${promptId}`); },
-    onError: () => { alert(t('reviewDetailPage.failPromptCreate')); navigate(`/prompt/${promptId}`); },
-  });
 
   const onHandleCreatePrompt = () => {
     if (Object.keys(prompts).length < 1) {
       alert(t('reviewDetailPage.noMenuToCreate'));
       return;
     }
-    createPromptMutation();
+
+    navigate('/prompt');
   };
 
   return (

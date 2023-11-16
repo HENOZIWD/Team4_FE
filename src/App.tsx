@@ -54,7 +54,7 @@ function App() {
                     <Route path="/coinUsageHistory" element={<CoinUsagePage />} />
                     <Route path="/stores/:storeId/writeReview" element={<WriteReviewPage />} />
                     <Route path="/profileEditing" element={<UserEditProfilePage />} />
-                    <Route path="/prompt/:promptId" element={<PromptPage />} />
+                    <Route path="/prompt" element={<PromptPage />} />
                     <Route path="stores/:storeId/reviews/:reviewId" element={<ReviewDetailPage />} />
                     <Route path="/registerUserInfo" element={<RegisterUserInfoPage />} />
                     <Route path="/register" element={<Register />} />

@@ -2,7 +2,7 @@
 
 **배포 주소**
 
-https://k4cd71a7a9c51a.user-app.krampoline.com/landing
+~https://k4cd71a7a9c51a.user-app.krampoline.com/landing~
 
 ### 프로젝트 소개
 
